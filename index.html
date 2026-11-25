@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hissa - Split trip and flat expenses, settle in fewest payments</title>
+  <meta name="description" content="Log who paid for what on a trip or in a shared flat. Hissa works out who owes whom in the fewest payments. No app, no account, share it as a link.">
+  <link rel="stylesheet" href="base.css">
+  <style>
+    :root { --accent: #b45309; }
+    @media (prefers-color-scheme: dark) { :root { --accent: #fbbf24; --accent-ink: #2a1a02; } }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { display: inline-flex; gap: 6px; align-items: center; background: var(--surface-2); border: 1px solid var(--border); border-radius: 999px; padding: 4px 6px 4px 12px; font-size: 14px; }
+    .chip button { padding: 2px 8px; border-radius: 999px; font-size: 13px; }
+    .among { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+    .among label { display: inline-flex; gap: 6px; align-items: center; font-size: 14px; font-weight: 400; }
+    .exp { display: grid; grid-template-columns: 1fr auto auto; gap: 10px; align-items: center; padding: 10px 0; }
+    .exp + .exp { border-top: 1px solid var(--border); }
+    .pos { color: var(--ok); }
+    .neg { color: var(--danger); }
+    .xfer { font-size: 1.05rem; padding: 8px 0; }
+    .xfer b { font-variant-numeric: tabular-nums; }
+    .inline { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: end; }
+  </style>
+</head>
+<body>
+  <header class="top"><div class="wrap">
+    <h1>Hissa</h1>
+    <p>Log who paid for what. See who owes whom, settled in the fewest payments. No app and no sign-up; share it as a link.</p>
+  </div></header>
+  <main><div class="wrap grid-2">
+    <div class="stack">
+      <section class="panel stack">
+        <div class="row" style="display:grid;grid-template-columns:1fr 110px;gap:10px">
+          <label class="field">Group name<input id="title" type="text" placeholder="Goa trip, Flat 4B, Team lunch"></label>
+          <label class="field">Currency<select id="currency"></select></label>
+        </div>
+        <div class="inline">
+          <label class="field">Add a person<input id="person" type="text" placeholder="Name" autocomplete="off"></label>
+          <button type="button" id="addPerson">Add</button>
+        </div>
+        <div class="chips" id="people"></div>
+      </section>
+      <form class="panel stack" id="expForm" novalidate>
+        <h2>Add an expense</h2>
+        <label class="field">What for<input id="what" type="text" placeholder="Dinner, fuel, rent"></label>
+        <div class="row" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <label class="field">Amount<input id="amount" type="number" inputmode="decimal" min="0" step="0.01"></label>
+          <label class="field">Paid by<select id="payer"></select></label>
+        </div>
+        <fieldset style="border:0;padding:0;margin:0" class="stack">
+          <legend class="small" style="font-weight:600;margin-bottom:6px">Split between</legend>
+          <div class="among" id="among"></div>
+        </fieldset>
+        <p class="err" id="err" role="alert"></p>
+        <div><button class="primary" type="submit">Add expense</button></div>
+      </form>
+    </div>
+    <div class="stack">
+      <section class="panel stack" aria-live="polite">
+        <h2>Settle up</h2>
+        <div id="settle"></div>
+        <div class="row"><button class="primary" id="copySummary" type="button">Copy summary</button><button id="share" type="button">Copy share link</button></div>
+      </section>
+      <section class="panel stack">
+        <h2>Balances</h2>
+        <div id="balances"></div>
+      </section>
+      <section class="panel stack">
+        <h2>Expenses</h2>
+        <div id="list"></div>
+        <div><button type="button" id="reset" class="ghost">Start a new group</button></div>
+      </section>
+    </div>
+  </div></main>
+  <footer class="bottom"><div class="wrap">
+    <span>Hissa. Free and open source. Your group lives in this browser and in the link you share.</span>
+    <span><a href="https://github.com/Linuxboii/hissa">Source</a> &nbsp; <a href="https://sushanth.avlokai.com">Made by Sushanth Kasturi</a></span>
+  </div></footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

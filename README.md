@@ -16,6 +16,15 @@ Split shared expenses, settle in the fewest payments.
 
 State lives in localStorage and in the URL fragment, which browsers never send to the server.
 
+## Demand
+
+Splitwise reported tens of millions of registered users, and its Android app lists about 31 million installs.
+
+- [Yespress: Splitwise company profile](https://yespress.io/splitwise-inc)
+- [AppGoblin: Splitwise Android](https://appgoblin.info/apps/com.Splitwise.SplitwiseMobile)
+
+These figures measure demand for the task, from existing tools. They are third-party estimates or company claims, not usage of this tool.
+
 ## Privacy
 
 Everything runs in your browser. There is no backend, no analytics and no account. Nothing you enter is uploaded.
